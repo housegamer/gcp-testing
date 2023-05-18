@@ -1,36 +1,36 @@
 variable "project_id" {
-  default = "__project_id__"
+  default = "project_id"
 }
 
 variable "region" {
-  default = "__region__"
+  default = "region"
 }
 
 variable "sa_account_id" {
-  default = "__sa_account_id__"
+  default = "sa_account_id"
 }
 
 variable "sa_display_name" {
-  default = "__sa_name__"
+  default = "sa_display_name"
 }
 
 variable "vm_name" {
-  default = "__name_name__"
+  default = "vm_name"
 }
 
 variable "machine_type" {
-  default = "__machine_type__"
+  default = "machine_type"
 }
 
 variable "zone" {
-  default = "__zone__"
+  default = "zone"
 }
 
 variable "boot_disk_image" {
-  default = "__boot_disk_image__"
+  default = "boot_disk_image"
 }
 variable "credentials" {
-  default   = "__GOOGLE_APPLICATION_CREDENTIALS__"
+  default   = "GOOGLE_APPLICATION_CREDENTIALS"
   type      = map(any)
   sensitive = true
 }
