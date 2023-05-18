@@ -10,12 +10,7 @@ terraform {
 provider "google" {
   project     = var.project_id
   region      = var.region
-  credentials = var.credentials
-}
-
-resource "google_service_account" "sa_default" {
-  account_id   = var.sa_account_id
-  display_name = var.sa_display_name
+  credentials = "GOOGLE_APPLICATION_CREDENTIALS.json"
 }
 
 resource "google_compute_instance" "vm_instance" {
@@ -35,9 +30,5 @@ resource "google_compute_instance" "vm_instance" {
   network_interface {
     network = "default"
   }
-
-  service_account {
-    scopes = ["cloud-platform"]
-    email  = google_service_account.sa_default.email
-  }
+  
 }
