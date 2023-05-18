@@ -29,8 +29,8 @@ variable "zone" {
 variable "boot_disk_image" {
   default = "boot_disk_image"
 }
-variable "GOOGLE_APPLICATION_CREDENTIALS" {
-#   default   = "GOOGLE_APPLICATION_CREDENTIALS"
+variable "credentials" {
+  default   = "GOOGLE_APPLICATION_CREDENTIALS"
   type      = string
   sensitive = true
 }
