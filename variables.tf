@@ -31,6 +31,6 @@ variable "boot_disk_image" {
 }
 variable "credentials" {
   default   = "GOOGLE_APPLICATION_CREDENTIALS"
-  type      = map(any)
+  type      = map(string)
   sensitive = true
 }
