@@ -10,7 +10,7 @@ terraform {
 provider "google" {
   project     = var.project_id
   region      = var.region
-  credentials = "GOOGLE_APPLICATION_CREDENTIALS.json"
+#   credentials = "GOOGLE_APPLICATION_CREDENTIALS.json"
 }
 
 resource "google_compute_instance" "vm_instance" {
