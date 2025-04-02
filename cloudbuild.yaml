@@ -1,8 +1,10 @@
 steps:
-- name: 'ubuntu'
-  args:
-  # - 'pwd'
-  - 'ls -la'
-  - '/workspace'
+# - name: 'ubuntu'
+#   args:
+#   # - 'pwd'
+#   - 'ls -la'
+#   - '/workspace'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact:testing', '.']
 options:
   logging: CLOUD_LOGGING_ONLY
