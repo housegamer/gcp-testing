@@ -1,7 +1,7 @@
 steps:
 - name: 'ubuntu'
   args:
-  - 'ls -la'
-  - '/workspace'
+  - 'pwd'
+  # - '/workspace'
 options:
   logging: CLOUD_LOGGING_ONLY
