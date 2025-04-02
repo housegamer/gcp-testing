@@ -4,7 +4,6 @@ RUN mkdir -p /backend
 WORKDIR /backend
 
 RUN <<EOF
-touch test.txt 
 echo 'we are in backend dir' > test.txt
 EOF
 
