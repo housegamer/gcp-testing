@@ -6,9 +6,9 @@ RUN mkdir -p /backend
 WORKDIR /backend
 
 #3
-COPY ./package.json .
-COPY ./package-lock.json .
-COPY .env .
+COPY package.json .
+COPY package-lock.json .
+# COPY .env .
 
 #4
 RUN npm install -g npm@10.5.2
