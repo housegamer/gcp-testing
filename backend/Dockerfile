@@ -5,9 +5,11 @@ FROM node:20.11-alpine3.19
 RUN mkdir -p /backend
 WORKDIR /backend
 
+CMD ["pwd"]
+
 #3
-COPY package.json .
-COPY package-lock.json .
+COPY ../package.json .
+COPY ../package-lock.json .
 # COPY .env .
 
 #4
