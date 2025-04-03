@@ -5,7 +5,7 @@ FROM node:20.11-alpine3.19
 RUN mkdir -p /backend
 WORKDIR /backend
 
-CMD ["pwd"]
+RUN ["-c", "pwd"]
 
 #3
 COPY ../package.json .
