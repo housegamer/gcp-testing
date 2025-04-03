@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   # dir: '../backend'
-  args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing', '-f', 'backend/', '.']
+  args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing', '-f', 'backend/Dockerfile', '.']
 images: ['us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing']
 options:
   logging: CLOUD_LOGGING_ONLY
