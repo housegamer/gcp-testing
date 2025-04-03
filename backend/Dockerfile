@@ -8,8 +8,8 @@ WORKDIR /backend
 # SHELL ["/bin/bash", "-c", "pwd"]
 
 #3
-COPY ./backend/package.json .
-COPY ./backend/package-lock.json .
+COPY ./backend/package.json /backend
+COPY ./backend/package-lock.json /backend
 # COPY .env .
 
 #4
@@ -17,7 +17,7 @@ RUN npm install -g npm@10.5.2
 RUN npm install --silent
 
 #5
-COPY . .
+COPY . /backend
 
 #6
 CMD [ "npm", "start"]
