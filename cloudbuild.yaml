@@ -1,19 +1,19 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  # dir: '../backend'
   args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing', './backend']
-# images: ['us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing']
-# options:
-#   logging: CLOUD_LOGGING_ONLY
+  id: 'Build backend'
+
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing']
+  id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing', './frontend']
+  id: 'Biuld Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing']
-# images: ['us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing']
+  id: 'Push Frontend'
 options:
   logging: CLOUD_LOGGING_ONLY
