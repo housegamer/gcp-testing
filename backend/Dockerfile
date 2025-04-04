@@ -1,9 +1,23 @@
-FROM ubuntu:24.04
+#1
+FROM node:20.11-alpine3.19
 
+#2
 RUN mkdir -p /backend
 WORKDIR /backend
 
-RUN echo 'hello world' > test.txt
+# SHELL ["/bin/bash", "-c", "pwd"]
 
-RUN echo test.txt
-RUN ls -la
+#3
+COPY ./backend/package.json /backend
+COPY ./backend/package-lock.json /backend
+# COPY .env .
+
+#4
+RUN npm install -g npm@10.5.2
+RUN npm install --silent
+
+#5
+COPY . /backend
+
+#6
+CMD [ "npm", "start"]
