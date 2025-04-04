@@ -8,8 +8,8 @@ WORKDIR /backend
 # SHELL ["/bin/bash", "-c", "pwd"]
 
 #3
-COPY ./backend/package.json /backend
-COPY ./backend/package-lock.json /backend
+COPY ./package.json /backend
+COPY ./package-lock.json /backend
 # COPY .env .
 
 #4
