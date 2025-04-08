@@ -9,10 +9,16 @@ steps:
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing', './frontend']
-  id: 'Biuld Frontend'
+  id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing']
   id: 'Push Frontend'
+
+- name: 'gcr.io/cloud.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  id: 'Deploy to K8'
+  args: ['deploy', 'apply', '--file', 'deploy/pipeline.yaml', '--region', 'us-east4',
+        'deploy', 'releases', 'create', 'app1-release-${SHORT_SHA}', '--deliver', 'test-cd-pipeline', '--region', 'us-east4', '--from-k8s-manifest', 'k8/app.yaml']
 options:
   logging: CLOUD_LOGGING_ONLY

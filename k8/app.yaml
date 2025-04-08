@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-pipeline
+  strategy: {}
+  template:
+    metadata:
+    spec:
+      containers:
+      - name: ubuntu
+        image: us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing
