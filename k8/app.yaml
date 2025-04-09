@@ -13,4 +13,4 @@ spec:
     spec:
       containers:
       - name: ubuntu
-        image: us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing
+        image: us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu
