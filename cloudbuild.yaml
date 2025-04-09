@@ -30,7 +30,7 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region us-east4
     gcloud deploy apply --file deploy/dev.yaml --region us-east4
 
-    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region us-east4 --from-k8s-manifest=../k8/app.yaml
+    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region us-east4 --from-k8s-manifest=kubernetes/app.yaml
 
 options:
   logging: CLOUD_LOGGING_ONLY
