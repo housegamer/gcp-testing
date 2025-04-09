@@ -30,7 +30,7 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region us-east4
     gcloud deploy apply --file deploy/dev.yaml --region us-east4
 
-    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region us-east4 
+    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region us-east4 --images ubuntu1=gcr.io/us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu
 
 #--from-k8s-manifest=kubernetes/app.yaml
 
