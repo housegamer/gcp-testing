@@ -1,18 +1,18 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_BACKEND:$TAG_NAME', './backend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_BACKEND:$COMMIT_SHA', './backend']
   id: 'Build backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_BACKEND:$TAG_NAME']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_BACKEND:$COMMIT_SHA']
   id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_FRONTEND:$TAG_NAME', './frontend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_FRONTEND:$COMMIT_SHA', './frontend']
   id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_FRONTEND:$TAG_NAME']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_FRONTEND:$COMMIT_SHA']
   id: 'Push Frontend'
 
 # - name: 'gcr.io/cloud.com/cloudsdktool/cloud-sdk'
