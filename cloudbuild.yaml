@@ -1,18 +1,18 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing', './backend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_BACKEND:$TAG_NAME', './backend']
   id: 'Build backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu:testing']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_BACKEND:$TAG_NAME']
   id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing', './frontend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_FRONTEND:$TAG_NAME', './frontend']
   id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu-frontend:testing']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/test-artifact/$_FRONTEND:$TAG_NAME']
   id: 'Push Frontend'
 
 # - name: 'gcr.io/cloud.com/cloudsdktool/cloud-sdk'
@@ -30,7 +30,7 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region us-east4
     gcloud deploy apply --file deploy/dev.yaml --region us-east4
 
-    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region us-east4 --from-k8s-manifest=kubernetes/app.yaml
+    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region us-east4 --from-k8s-manifest=./kubernetes/app.yaml
 
 #--from-k8s-manifest=kubernetes/app.yaml
 #--images ubuntu1=gcr.io/us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu
