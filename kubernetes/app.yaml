@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: ubuntu
-        image: $LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND
+        image: ${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_BACKEND}:latest
