@@ -8,11 +8,11 @@ steps:
   id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND', './frontend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$SHORT_SA', './frontend']
   id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$SHORT_SHA']
   id: 'Push Frontend'
 
 # - name: 'gcr.io/cloud.com/cloudsdktool/cloud-sdk'
