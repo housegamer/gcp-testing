@@ -4,15 +4,15 @@ steps:
   id: 'Build backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:$SHORT_SHA']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:$TAG_NAME']
   id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$SHORT_SHA', './frontend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$_TAG_NAME_FRONTEND', './frontend']
   id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$SHORT_SHA']
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$_TAG_NAME_FRONTEND']
   id: 'Push Frontend'
 
 # - name: 'gcr.io/cloud.com/cloudsdktool/cloud-sdk'
@@ -27,6 +27,11 @@ steps:
   - -xe
   - -c
   - |
+
+    _ARTIFACT_REPO=$_ARTIFACT_REPO
+    _BACKEND=$_BACKEND
+    TAG_NAME=$TAG_NAME
+
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
