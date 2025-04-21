@@ -28,9 +28,9 @@ steps:
   - -c
   - |
 
-    _ARTIFACT_REPO=$_ARTIFACT_REPO
-    _BACKEND=$_BACKEND
-    TAG_NAME=$TAG_NAME
+    export _ARTIFACT_REPO=$_ARTIFACT_REPO
+    export _BACKEND=$_BACKEND
+    export TAG_NAME=$TAG_NAME
 
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
