@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: ubuntu
-        image: gcr.io/$LOCATION-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/$_ARTIFACT_REPO/$_BACKEND:$TAG_NAME
+        image: gcr.io/$(LOCATION)-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/$_ARTIFACT_REPO/$_BACKEND:$TAG_NAME
