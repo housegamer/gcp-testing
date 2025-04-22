@@ -15,12 +15,6 @@ steps:
   args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$_TAG_NAME_FRONTEND']
   id: 'Push Frontend'
 
-# - name: 'gcr.io/cloud.com/cloudsdktool/cloud-sdk'
-#   entrypoint: 'gcloud'
-#   id: 'Deploy to K8'
-#   args: ['deploy', 'apply', '--file', 'deploy/pipeline.yaml', '--region', 'us-east4',
-#         'deploy', 'releases', 'create', 'app1-release-${SHORT_SHA}', '--deliver', 'test-cd-pipeline', '--region', 'us-east4', '--from-k8s-manifest', 'k8/app.yaml']
-
 - name: 'google/cloud-sdk:latest'
   entrypoint: 'sh'
   args:
@@ -28,17 +22,14 @@ steps:
   - -c
   - |
 
-    export _ARTIFACT_REPO=$_ARTIFACT_REPO
-    export _BACKEND=$_BACKEND
-    export TAG_NAME=$TAG_NAME
-
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
     gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region $LOCATION --from-k8s-manifest=./kubernetes/app.yaml
-
-#--from-k8s-manifest=kubernetes/app.yaml
-#--images ubuntu1=gcr.io/us-east4-docker.pkg.dev/us-gcp-ame-adv-9504d-npd-1/test-artifact/ubuntu
+  env:
+  - _ARTIFACT_REPO=$_ARTIFACT_REPO
+  - _BACKEND=$_BACKEND
+  - TAG_NAME=$TAG_NAME
 
 options:
   logging: CLOUD_LOGGING_ONLY
