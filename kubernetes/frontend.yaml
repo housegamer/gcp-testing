@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dev-pipeline
+  name: dev-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-pipeline
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: dev-pipeline
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu-frontend
+
