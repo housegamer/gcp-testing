@@ -30,5 +30,18 @@ steps:
 
     gcloud deploy releases create 'app-${_FRONTEND}-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$_TAG_NAME_FRONTEND
 
+- name: 'google/cloud-sdk:latest'
+  id: 'Delivery & Target Pipeline Frontend'
+  entrypoint: 'sh'
+  args:
+  - -xe
+  - -c
+  - |
+
+    gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
+    gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
+
+    gcloud deploy releases create 'app-${_FRONTEND}-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:$_TAG_NAME_FRONTEND
+
 options:
   logging: CLOUD_LOGGING_ONLY
