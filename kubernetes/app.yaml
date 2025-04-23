@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: ubuntu
-        image: IMAGE_PLACEHOLDER
+        image: test-image
