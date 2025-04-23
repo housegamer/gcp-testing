@@ -25,7 +25,7 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
-    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region $LOCATION --images=grc.io/$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:$TAG_NAME
+    gcloud deploy releases create 'app1-release-${SHORT_SHA}' --delivery-pipeline test-cd-pipeline --region $LOCATION --images=grc.io/$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND=$TAG_NAME
 #--from-k8s-manifest=./kubernetes/app.yaml
 
 # - name: 'gcr.io/cloud-builders/gke-deploy'
