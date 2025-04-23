@@ -5,7 +5,8 @@ build:
     gitCommit: {}
   local: {}
 manifests:
-  rawYaml: []
+  rawYaml:
+  - ./kubernetes/app.yaml
 deploy:
   kubectl: {}
   logs:
