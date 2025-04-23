@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: dev-pipeline
-  name: dev-pipeline
+    app: frontend-api
+  name: frontend-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-pipeline
+      app: frontend-api
   strategy: {}
   template:
     metadata:
       labels:
-        app: dev-pipeline
+        app: frontend-api
     spec:
       containers:
-      - name: ubuntu
+      - name: ubuntu-frontend
         image: ubuntu-frontend
 
