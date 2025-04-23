@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
       - name: ubuntu
-        image: $_BACKEND
+        image: ubuntu:v.01.01
