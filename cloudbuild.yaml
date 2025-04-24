@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:$TAG_NAME', './backend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.0.1.${SHORT_SHA}', './backend']
   id: 'Build backend'
 
 - name: 'gcr.io/cloud-builders/docker'
