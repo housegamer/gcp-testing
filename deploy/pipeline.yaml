@@ -7,7 +7,7 @@ description: cd delivery pipeline
 serialPipeline:
   stages:
   - targetId: dev-pipeline
-    deploymentParameters:
+    deployParameters:
     - values:
       matchTargetLabels:
         app: frontend-api
