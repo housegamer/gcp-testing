@@ -6,4 +6,11 @@ metadata:
 description: cd delivery pipeline
 serialPipeline:
   stages:
-  - targetId: dev
+  - targetId: dev-pipeline
+    deploymentParameters:
+    - values:
+      matchTargetLabels:
+        app: frontend-api
+    - values:
+      matchTargetLabels:
+        app: dev-pipeline
