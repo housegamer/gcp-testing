@@ -7,34 +7,3 @@ description: testing dev pipeline
 gke:
   cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
   dnsEndpoint: true
-# multiTarget:
-#   targetIds: [backend, frontend]
-
-# ---
-
-# apiVersion: deploy.cloud.google.com/v1
-# kind: Target
-# metadata:
-#   name: backend
-#   annotations: {}
-#   labels:
-#     app: dev-pipeline
-# description: testing dev pipeline
-# gke:
-#   cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
-#   dnsEndpoint: true
-
-
-# --- 
-
-# apiVersion: deploy.cloud.google.com/v1
-# kind: Target
-# metadata:
-#   name: frontend
-#   annotations: {}
-#   labels:
-#     app: frontend-api
-# description: frontendAPi testing dev pipeline
-# gke:
-#   cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
-#   dnsEndpoint: true
