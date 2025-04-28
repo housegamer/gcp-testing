@@ -6,7 +6,7 @@ steps:
   - -xe
   - -c
   - |
-    echo '$$test-ci' > ~/.env
+    $$test-ci > .env
     cat .env
     ls -la ~/.
   secretEnv: ['test-ci']
