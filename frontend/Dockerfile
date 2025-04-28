@@ -10,7 +10,7 @@ WORKDIR /frontend
 #3
 COPY ./package.json /frontend
 COPY ./package-lock.json /frontend
-# COPY .env .
+COPY .env ./frontend
 
 #4
 RUN npm install -g npm@10.5.2
