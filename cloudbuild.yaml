@@ -1,19 +1,13 @@
 steps:
 - name: 'google/cloud-sdk:latest'
-  id: Create .Env file
+  id: Create .Env File
   entrypoint: 'bash'
   args:
   - -xe
   - -c
   - |
     echo '$$test-ci' > .env
-    cat .env 
-    base64 -input .env --decode
-    cat .env
-    pwd
-    ls -la /workspace/
     cp /workspace/.env /workspace/backend
-    ls -la /workspace/backend
   secretEnv: ['test-ci']
 
 - name: 'gcr.io/cloud-builders/docker'
