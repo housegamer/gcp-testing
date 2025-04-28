@@ -1,12 +1,23 @@
 steps:
-- name: 'google/cloud-sdk:latest'
-  id: Create .Env File
+# - name: 'google/cloud-sdk:latest'
+#   id: Create .Env File
+#   entrypoint: 'bash'
+#   args:
+#   - -xe
+#   - -c
+#   - |
+#     echo '$$test-ci' > .env
+#     cp /workspace/.env /workspace/backend
+#   secretEnv: ['test-ci']
+
+- name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
   args:
   - -xe
   - -c
   - |
-    echo '$$test-ci' > .env
+    gcloud secrets version access latest --secret=$$test-ci --format='get(payload.data)' | base64 -d > .env
+    cat .env
     cp /workspace/.env /workspace/backend
   secretEnv: ['test-ci']
 
