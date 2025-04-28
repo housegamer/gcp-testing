@@ -1,12 +1,12 @@
 steps:
 - name: 'google/cloud-sdk:latest'
   id: Create .Env file
-  entrypoint: 'sh'
+  entrypoint: 'bash'
   args:
   - -xe
   - -c
   - |
-    echo '$$test-ci' > .env
+    echo '$$test-ci' > ~/.env
     cat .env
     ls -la ~/.
   secretEnv: ['test-ci']
