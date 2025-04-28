@@ -10,7 +10,7 @@ steps:
     echo '$$test-ci' > .env
     cat .env
     pwd
-    ls -la ~/.
+    ls -la /workspace/
   secretEnv: ['test-ci']
 
 - name: 'gcr.io/cloud-builders/docker'
