@@ -3,7 +3,7 @@ steps:
   id: Create .Env file
   entrypoint: 'sh'
   args:
-  - xe
+  - -xe
   - -c
   - |
     echo $$test-ci > .env
