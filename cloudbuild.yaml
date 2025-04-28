@@ -7,7 +7,9 @@ steps:
   - -c
   - |
     echo '$$test-ci' > .env
-    cat .env | base64 --decode
+    cat .env 
+    base64 -input .env --decode
+    cat .env
     pwd
     ls -la /workspace/
     cp /workspace/.env /workspace/backend
