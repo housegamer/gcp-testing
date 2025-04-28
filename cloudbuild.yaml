@@ -10,6 +10,8 @@ steps:
     cat .env
     pwd
     ls -la /workspace/
+    cp /workspace/.env /workspace/.env/backend
+    ls -la /workspace/backend
   secretEnv: ['test-ci']
 
 - name: 'gcr.io/cloud-builders/docker'

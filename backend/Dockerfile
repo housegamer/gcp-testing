@@ -10,7 +10,7 @@ WORKDIR /backend
 #3
 COPY ./package.json /backend
 COPY ./package-lock.json /backend
-COPY ./workspace/.env /backend
+COPY .env /backend
 
 #4
 RUN npm install -g npm@10.5.2
