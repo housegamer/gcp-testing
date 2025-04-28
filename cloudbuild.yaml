@@ -6,7 +6,6 @@ steps:
   - -xe
   - -c
   - |
-    touch .env
     echo '$$test-ci' > .env
     cat .env
     pwd
