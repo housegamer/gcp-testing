@@ -6,7 +6,7 @@ steps:
   - -xe
   - -c
   - |
-    echo '$$test-ci' | base64 --decode > .env
+    echo '$$test-ci | base64 --decode' > .env
     cat .env
     pwd
     ls -la /workspace/
