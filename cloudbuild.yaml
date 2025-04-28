@@ -10,7 +10,7 @@ steps:
     cat .env
     pwd
     ls -la /workspace/
-    cp /workspace/.env /workspace/.env/backend
+    cp /workspace/.env /workspace/backend
     ls -la /workspace/backend
   secretEnv: ['test-ci']
 
