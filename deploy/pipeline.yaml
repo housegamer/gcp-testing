@@ -7,3 +7,4 @@ description: cd delivery pipeline
 serialPipeline:
   stages:
   - targetId: dev-pipeline
+  - targetId: stage-pipeline
