@@ -33,7 +33,7 @@ steps:
     cp /workspace/.env /workspace/frontend
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.0.1.${SHORT_SHA}', './backend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.$_TAG_BACKEND.${SHORT_SHA}', './backend']
   id: 'Build backend'
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -41,7 +41,7 @@ steps:
   id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v.0.2.${SHORT_SHA}', './frontend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v.$_TAG_FRONTEND.${SHORT_SHA}', './frontend']
   id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -63,7 +63,7 @@ steps:
   entrypoint: 'bash'
   # allowExitCodes: [1]
   args:
-  - ./targetValidation.bash
+  - targetValidation.bash
 
 # availableSecrets:
 #   secretManager:
