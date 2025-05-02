@@ -58,7 +58,7 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
-- name: 'google/cloud-builders/gcloud'
+- name: 'google/cloud-sdk:latest'
   id: 'Target Pipeline'
   entrypoint: 'bash'
   # allowExitCodes: [1]
