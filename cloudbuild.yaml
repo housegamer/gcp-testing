@@ -62,13 +62,12 @@ steps:
   id: 'Target Pipeline'
   entrypoint: 'bash'
   # allowExitCodes: [1]
+  automapSubstitutions: false
   args:
   - -xe
   - -c
   - |
 
-    #!/bin/bash
-    
     BACKEND=$(pwd)
     echo $BACKEND
     
