@@ -60,9 +60,18 @@ steps:
 
 - name: 'google/cloud-builders/gcloud'
   id: 'Target Pipeline'
-  # entrypoint: 'bash'
+  entrypoint: 'bash'
   # allowExitCodes: [1]
-  script: './targetValidation.bash'
+  args:
+  - -xe
+  - -c
+  - |
+
+    #!/bin/bash
+
+    BACKEND=$(pwd)
+    echo $BACKEND
+    
 
 
 # availableSecrets:
