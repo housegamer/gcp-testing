@@ -68,7 +68,7 @@ steps:
   - |
 
     #!/bin/bash
-
+    
     BACKEND=$(pwd)
     echo $BACKEND
     
