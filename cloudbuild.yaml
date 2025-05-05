@@ -50,7 +50,7 @@ steps:
 
 - name: 'google/cloud-sdk:latest'
   id: 'Delivery Pipeline'
-  entrypoint: 'sh'
+  entrypoint: 'bash'
   args:
   - -xe
   - -c
@@ -58,23 +58,30 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
+- name: 'google/cloud-sdk:latest'
+  id: 'Target Pipeline'
+  allowExitCodes: [1]
+  entrypoint: 'bash'
+  args:
+  - -xe
+  - -c
+  - |
+
     gcloud deploy releases create app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.$_TAG_BACKEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/app.yaml
     gcloud deploy releases create app-${_FRONTEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v.$_TAG_FRONTEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/frontend.yaml
 
-# - name: 'google/cloud-sdk:latest'
-#   id: 'Target Pipeline'
-#   entrypoint: 'bash'
-#   # allowExitCodes: [1]
-#   # automapSubstitutions: false
-#   args:
-#   - -xe
-#   - -c
-#   - |
+- name: 'google/cloud-sdk:latest'
+  id: 'K8 Validation Pipeline'
+  entrypoint: 'bash'
+  # allowExitCodes: [1]
+  # automapSubstitutions: false
+  args:
+  - -xe
+  - -c
+  - |
 
-#     export BACKEND=$(pwd)
-#     echo $BACKEND
-    
-
+    kubectl apply -f ./kubernetes/app.yaml --force
+    kubectl apply -f ./kubernetes/frontend.yaml --force
 
 # availableSecrets:
 #   secretManager:
