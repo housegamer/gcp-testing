@@ -72,12 +72,10 @@ steps:
 
 - name: 'google/cloud-sdk:latest'
   id: 'K8 Validation Pipeline'
-  entrypoint: 'bash'
+  entrypoint: 'kubectl'
   # allowExitCodes: [1]
   # automapSubstitutions: false
   args:
-  - -xe
-  - -c
   - |
 
     kubectl apply -f ./kubernetes/app.yaml --force
