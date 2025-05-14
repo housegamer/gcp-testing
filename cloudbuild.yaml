@@ -78,11 +78,7 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=us-east4'
   - 'CLOUDSDK_CONTAINER_CLUSTER=test-cluster-1'
-  args:
-  - |
-
-    apply -f ./kubernetes/app.yaml --force
-    apply -f ./kubernetes/frontend.yaml --force
+  args: ['apply', '-f','./kubernetes/frontend.yaml','--force']
 
 # availableSecrets:
 #   secretManager:
