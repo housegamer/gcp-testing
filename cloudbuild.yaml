@@ -75,6 +75,9 @@ steps:
   # entrypoint: 'kubectl'
   # allowExitCodes: [1]
   # automapSubstitutions: false
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-east4'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=test-cluster-1'
   args:
   - |
 
