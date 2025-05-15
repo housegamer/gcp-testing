@@ -70,15 +70,25 @@ steps:
     gcloud deploy releases create app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.$_TAG_BACKEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/app.yaml
     gcloud deploy releases create app-${_FRONTEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v.$_TAG_FRONTEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/frontend.yaml
 
-- name: 'gcr.io/cloud-builders/kubectl'
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   id: 'K8 Validation Pipeline'
+#   # entrypoint: 'kubectl'
+#   # allowExitCodes: [1]
+#   # automapSubstitutions: false
+#   env:
+#   - 'CLOUDSDK_COMPUTE_REGION=us-east4'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=test-cluster-1'
+#   args: ['apply', '-f','./kubernetes/frontend.yaml','--force']
+
+- name: 'gcr.io/cloud-builders/gke-deploy'
   id: 'K8 Validation Pipeline'
   # entrypoint: 'kubectl'
   # allowExitCodes: [1]
   # automapSubstitutions: false
-  env:
-  - 'CLOUDSDK_COMPUTE_REGION=us-east4'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=test-cluster-1'
-  args: ['apply', '-f','./kubernetes/frontend.yaml','--force']
+  args:
+  - 'apply'
+  - '-f=./kubernetes/frontend.yaml'
+  - '--force=true'
 
 # availableSecrets:
 #   secretManager:
