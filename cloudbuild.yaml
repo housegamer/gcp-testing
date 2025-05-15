@@ -88,6 +88,7 @@ steps:
   args:
   - 'apply'
   - '--filename=./kubernetes/frontend.yaml'
+  - '--location=us-east4'
   - '--cluster=test-cluster-1'
   # - '--force=true'
 
