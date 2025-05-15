@@ -87,7 +87,7 @@ steps:
   # automapSubstitutions: false
   args:
   - 'apply'
-  - '-f=./kubernetes/frontend.yaml'
+  - '--filename=./kubernetes/frontend.yaml'
   - '--force=true'
 
 # availableSecrets:
