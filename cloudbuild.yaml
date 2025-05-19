@@ -76,7 +76,7 @@ steps:
   - -c
   - -xe
   - |
-    gcloud container clusters get-credentials test-cluster-1 --zone us-east4
+    gcloud container clusters get-credentials test-cluster-1 --zone us-east4 --dns-endpoint gke-8603e818a7944aa985f98b2649041e38ce7d-29123184363.us-east4.gke.goog
 
     kubectl get nodes
 
