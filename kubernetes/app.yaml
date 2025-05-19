@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: backend
+    app: backend-api
   name: dev-pipeline
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: backend-api
   strategy: {}
   template:
     metadata:
       labels:
-        app: backend
+        app: backend-api
     spec:
       containers:
       - name: ubuntu
