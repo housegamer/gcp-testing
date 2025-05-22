@@ -58,7 +58,7 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'google/cloud-sdk:latest'
   id: 'Target Pipeline'
   # allowExitCodes: [1]
   entrypoint: 'bash'
@@ -66,7 +66,7 @@ steps:
   - -c
   - -xe
   - |
-    gcloud deploy releases describe app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION | grep -i "succ*" | awk "{print '$2'}" > success-releases.txt
+    gcloud deploy releases describe app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION | grep -i "succ*" | awk "{print $2}" > success-releases.txt
     cat success-releases.txt
     if [[ success-releases.txt == "SUCCEEDED" ]]; then
       echo "release already exists"
