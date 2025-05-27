@@ -95,6 +95,9 @@ steps:
     while read line; do
         if grep -q "FAILURE" <<< "$line"; then
             echo "$line"
+        else
+          gcloud deploy releases create app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.$_TAG_BACKEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/app.yaml
+          echo "deploying app-${_BACKEND}-release-${SHORT_SHA}"
         fi
     done < success-releases.txt
 
