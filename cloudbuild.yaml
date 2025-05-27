@@ -58,32 +58,31 @@ steps:
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
     gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
 
-# - name: 'bash'
-#   id: 'Target Validation'
-#   script: |
-#     #!/usr/bin/env bash
+- name: 'bash'
+  id: 'Target Validation'
+  script: |
+    #!/usr/bin/env bash
 
-#     set -xe
+    set -xe
 
-#     while read line; do
-#       if grep -i 'succ*' <<< $line; then
-#         echo 
+    test=$(pwd)
+    echo $test
 
-- name: 'google/cloud-sdk:latest'
-  id: 'Target Pipeline'
-  # allowExitCodes: [1]
-  entrypoint: 'bash'
-  args: 
-  - -c
-  - -xe
-  - |
-    gcloud deploy releases describe app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION | grep -i "succ*" | awk "{print \$2}" > success-releases.txt
+# - name: 'google/cloud-sdk:latest'
+#   id: 'Target Pipeline'
+#   # allowExitCodes: [1]
+#   entrypoint: 'bash'
+#   args: 
+#   - -c
+#   - -xe
+#   - |
+#     gcloud deploy releases describe app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION | grep -i "succ*" | awk "{print \$2}" > success-releases.txt
 
-    if [[success-releases.txt | grep -i "succ*" == "SUCCEEDED"]]; then
-      echo "release already exists"
-    else
-        gcloud deploy releases create app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.$_TAG_BACKEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/app.yaml  
-    fi
+#     if [[success-releases.txt | grep -i "succ*" == "SUCCEEDED"]]; then
+#       echo "release already exists"
+#     else
+#         gcloud deploy releases create app-${_BACKEND}-release-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v.$_TAG_BACKEND.${SHORT_SHA} --from-k8s-manifest=./kubernetes/app.yaml  
+#     fi
     # while read line; do
     #   if grep -i "succ*" <<< \$line; then
     #     echo "release already exists"
