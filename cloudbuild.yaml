@@ -65,8 +65,10 @@ steps:
 
     set -xe
 
-    test=$(pwd)
-    echo $test
+    LIST=$(gcloud deploy releases list --delivery-pipeline test-cd-pipeline --region $LOCATION | head -n 20)
+
+    echo $LIST
+
 
 # - name: 'google/cloud-sdk:latest'
 #   id: 'Target Pipeline'
