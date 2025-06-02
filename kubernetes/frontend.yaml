@@ -3,12 +3,14 @@ kind: Deployment
 metadata:
   labels:
     app: api
+    io.kompose.service: redis
   name: frontend-api
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: api
+      io.kompose.service: redis
   strategy: {}
   template:
     metadata:
