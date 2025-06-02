@@ -5,7 +5,8 @@ metadata:
   annotations: {}
 description: testing dev pipeline
 executionConfigs:
-  executionTimeout: 10800s
+- usages:
+    executionTimeout: 10800s
 gke:
   cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
   dnsEndpoint: true
@@ -20,7 +21,8 @@ metadata:
 description: testing stage pipeline
 requireApproval: true
 executionConfigs:
-  executionTimeout: 10800s
+- usages:
+    executionTimeout: 10800s
 gke:
   cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
   dnsEndpoint: true
