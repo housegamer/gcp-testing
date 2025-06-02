@@ -16,6 +16,7 @@ spec:
     metadata:
       labels:
         app: api
+        io.kompose.service: redis
     spec:
       containers:
       - name: ubuntu-frontend
