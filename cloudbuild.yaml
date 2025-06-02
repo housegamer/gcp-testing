@@ -79,6 +79,7 @@ steps:
   id: 'Target Pipeline'
   # allowExitCodes: [1]
   entrypoint: 'bash'
+  timeout: 10800s
   args: 
   - -c
   - -xe
