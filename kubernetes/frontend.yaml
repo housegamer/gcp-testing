@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: api
+    app: frontend
     io.kompose.service: redis
   name: frontend-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api
+      app: frontend
       io.kompose.service: redis
   strategy: {}
   template:
     metadata:
       labels:
-        app: api
+        app: frontend
         io.kompose.service: redis
     spec:
       containers:
