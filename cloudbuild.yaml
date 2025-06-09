@@ -56,7 +56,7 @@ steps:
   - -c
   - |
     gcloud deploy apply --file deploy/pipeline.yaml --region $LOCATION
-    gcloud deploy apply --file deploy/dev.yaml --region $LOCATION
+    gcloud deploy apply --file deploy/target.yaml --region $LOCATION
 
 # - name: 'bash'
 #   id: 'Target Validation'
