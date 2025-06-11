@@ -1,7 +1,7 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: $(dev)-pipeline
+  name: dev-pipeline
   annotations:
     target: apis
 description: testing dev pipeline
