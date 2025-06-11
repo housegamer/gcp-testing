@@ -51,8 +51,6 @@ steps:
 - name: 'google/cloud-sdk:latest'
   id: 'Delivery Pipeline'
   entrypoint: 'bash'
-  env:
-  - 'dev=$PROJECT_ID'
   args:
   - -xe
   - -c
@@ -167,3 +165,5 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
   substitution_option: 'ALLOW_LOOSE'
+substitutions:
+  _DEV: $PROJECT_ID
