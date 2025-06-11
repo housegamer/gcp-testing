@@ -52,7 +52,7 @@ steps:
   id: 'Delivery Pipeline'
   entrypoint: 'bash'
   env:
-  - 'DEV=$PROJECT_ID'
+  - 'dev=$PROJECT_ID'
   args:
   - -xe
   - -c
