@@ -51,6 +51,8 @@ steps:
 - name: 'google/cloud-sdk:latest'
   id: 'Delivery Pipeline'
   entrypoint: 'bash'
+  env:
+  - 'DEV=$PROJECT_ID'
   args:
   - -xe
   - -c
@@ -122,20 +124,6 @@ steps:
     gcloud deploy releases create app-${_BACKEND}-release-${_SUB_TAG_BACKEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND --from-k8s-manifest=./kubernetes/backend.yaml --to-target=dev-pipeline
     
     gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/frontend.yaml --to-target=dev-pipeline
-
-# - name: 'google/cloud-sdk:latest'
-#   id: 'Prod Target Pipeline'
-#   # allowExitCodes: [1]
-#   entrypoint: 'bash'
-#   timeout: 10800s
-#   args: 
-#   - -c
-#   - -xe
-#   - |
-
-#     gcloud deploy releases create app-${_BACKEND}-release-${_SUB_TAG_BACKEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND --from-k8s-manifest=./kubernetes/backend.yaml --to-target=prod-pipeline
-    
-#     gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/frontend.yaml --to-target=prod-pipeline
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
