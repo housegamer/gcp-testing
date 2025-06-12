@@ -165,5 +165,3 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
   substitution_option: 'ALLOW_LOOSE'
-substitutions:
-  _DEV: $PROJECT_ID
