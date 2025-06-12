@@ -33,7 +33,7 @@ steps:
     cp /workspace/.env /workspace/frontend
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND', '../backend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND', './backend']
   id: 'Build backend'
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -41,7 +41,7 @@ steps:
   id: 'Push backend'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND', '../frontend']
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND', './frontend']
   id: 'Build Frontend'
 
 - name: 'gcr.io/cloud-builders/docker'
