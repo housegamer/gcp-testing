@@ -10,5 +10,5 @@ executionConfigs:
 - executionTimeout: 10800s
   # serviceAccount: us-adv-devops-sa@us-gcp-ame-adv-56cad-prd-1.iam.gserviceaccount.com
 gke:
-  cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
+  cluster: projects/us-gcp-ame-adv-56cad-prd-1/locations/us-east4/clusters/test-prod
   dnsEndpoint: true
