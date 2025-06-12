@@ -8,7 +8,7 @@ description: testing prod pipeline
 requireApproval: true
 executionConfigs:
 - executionTimeout: 10800s
-  serviceAccount: us-adv-devops-sa@us-gcp-ame-adv-56cad-prd-1.iam.gserviceaccount.com
+  # serviceAccount: us-adv-devops-sa@us-gcp-ame-adv-56cad-prd-1.iam.gserviceaccount.com
 gke:
-  cluster: projects/us-gcp-ame-adv-56cad-prd-1/locations/us-east4/clusters/test-prod
+  cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
   dnsEndpoint: true
