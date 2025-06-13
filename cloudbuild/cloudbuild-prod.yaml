@@ -50,7 +50,7 @@ steps:
 
 - name: 'google/cloud-sdk:latest'
   id: 'Delivery Pipeline'
-  entrypoint: 'bash'
+  entrypoint: 'sh'
   args:
   - -xe
   - -c
