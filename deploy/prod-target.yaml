@@ -1,7 +1,7 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: prod-pipeline
+  name: prod
   annotations:
     target: apis
 description: testing prod pipeline
