@@ -84,28 +84,6 @@ steps:
     kubectl apply -f ./kubernetes/backend.yaml --force
     kubectl apply -f ./kubernetes/frontend.yaml --force
 
-# - name: 'gcr.io/cloud-builders/kubectl'
-#   id: 'K8 Validation Pipeline'
-#   # entrypoint: 'kubectl'
-#   # allowExitCodes: [1]
-#   # automapSubstitutions: false
-#   env:
-#   - 'CLOUDSDK_COMPUTE_REGION=us-east4'
-#   - 'CLOUDSDK_CONTAINER_CLUSTER=test-cluster-1'
-#   args: ['apply', '-f','./kubernetes/frontend.yaml','--force']
-
-# - name: 'gcr.io/cloud-builders/gke-deploy'
-#   id: 'K8 Validation Pipeline'
-#   # entrypoint: 'kubectl'
-#   # allowExitCodes: [1]
-#   # automapSubstitutions: false
-#   args:
-#   - 'apply'
-#   - '--filename=./kubernetes/frontend.yaml'
-#   - '--location=us-east4'
-#   - '--cluster=test-cluster-1'
-  # - '--force=true'
-
 # availableSecrets:
 #   secretManager:
 #   - versionName: projects/$PROJECT_ID/secrets/$_SECRET_NAME/versions/1
