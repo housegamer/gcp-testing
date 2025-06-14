@@ -37,9 +37,9 @@ steps:
   args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND']
   id: 'Push Frontend'
 
-- name: 'google/cloud-sdk:latest'
+- name: 'gcr.io/cloud-builders/gcloud'
   id: 'Delivery Pipeline'
-  entrypoint: 'sh'
+  entrypoint: 'bash'
   args:
   - -xe
   - -c
@@ -47,9 +47,9 @@ steps:
     gcloud deploy apply --file=deploy/pipeline.yaml --region=$LOCATION
     gcloud deploy apply --file=deploy/prod.yaml --region=$LOCATION
 
-- name: 'google/cloud-sdk:latest'
+- name: 'gcr.io/cloud-builders/gcloud'
   id: 'Target Pipeline'
-  entrypoint: 'sh'
+  entrypoint: 'bash'
   args:
   - -xe
   - -c
