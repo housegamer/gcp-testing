@@ -6,4 +6,5 @@ metadata:
 description: cd delivery pipeline
 serialPipeline:
   stages:
+  - targetId: dev-pipeline
   - targetId: prod
