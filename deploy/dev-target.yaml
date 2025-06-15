@@ -1,12 +1,18 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: dev-pipeline
+  name: dev
   annotations:
     target: apis
 description: testing dev pipeline
 executionConfigs:
-- executionTimeout: 10800s
+- usages:
+  - RENDER
+  - DEPLOY
+  - VERIFY
+  - PREDEPLOY
+  - POSTDEPLOY
+  executionTimeout: 10800s
 gke:
   cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
   dnsEndpoint: true

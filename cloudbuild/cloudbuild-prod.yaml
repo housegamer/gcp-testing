@@ -44,7 +44,7 @@ steps:
   - -xe
   - -c
   - |
-    gcloud deploy apply --file=deploy/pipeline.yaml --region=$LOCATION
+    gcloud deploy apply --file=deploy/pipeline-prod.yaml --region=$LOCATION
     gcloud deploy apply --file=deploy/prod.yaml --region=$LOCATION
 
 - name: 'gcr.io/cloud-builders/gcloud'
