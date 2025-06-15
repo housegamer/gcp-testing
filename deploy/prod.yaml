@@ -13,7 +13,6 @@ executionConfigs:
   - VERIFY
   - PREDEPLOY
   - POSTDEPLOY
-  - ANALYSIS
   executionTimeout: 10800s
 gke:
   cluster: projects/us-gcp-ame-adv-56cad-prd-1/locations/us-east4/clusters/test-prod
