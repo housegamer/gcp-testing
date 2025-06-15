@@ -3,8 +3,7 @@ kind: DeliveryPipeline
 metadata:
   name: test-cd-pipeline
   labels: {}
-description: cd delivery pipeline
+description: dev cd delivery pipeline
 serialPipeline:
   stages:
-  # - targetId: dev-pipeline
-  - targetId: prod-pipeline
+  - targetId: dev

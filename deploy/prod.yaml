@@ -1,10 +1,11 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: dev
+  name: prod
   annotations:
     target: apis
-description: testing dev pipeline
+description: testing prod pipeline
+# requireApproval: true
 executionConfigs:
 - usages:
   - RENDER
@@ -14,6 +15,5 @@ executionConfigs:
   - POSTDEPLOY
   executionTimeout: 10800s
 gke:
-  cluster: projects/us-gcp-ame-adv-9504d-npd-1/locations/us-east4/clusters/test-cluster-1
+  cluster: projects/us-gcp-ame-adv-56cad-prd-1/locations/us-east4/clusters/test-prod
   dnsEndpoint: true
-

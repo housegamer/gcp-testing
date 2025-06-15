@@ -55,7 +55,7 @@ steps:
   - -xe
   - -c
   - |
-    gcloud deploy apply --file ./deploy/pipeline.yaml --region $LOCATION
+    gcloud deploy apply --file ./deploy/pipeline-dev.yaml --region $LOCATION
     gcloud deploy apply --file ./deploy/dev-target.yaml --region $LOCATION
 
 - name: 'google/cloud-sdk:latest'

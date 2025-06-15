@@ -1,0 +1,9 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: test-cd-pipeline
+  labels: {}
+description: prod cd delivery pipeline
+serialPipeline:
+  stages:
+  - targetId: prod
