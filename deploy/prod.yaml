@@ -5,8 +5,8 @@ metadata:
   annotations: {}
 description: testing prod pipeline
 # requireApproval: true
-executionConfigs:
-- executionTimeout: 10800s
+# executionConfigs:
+# - executionTimeout: 10800s
   # serviceAccount: us-adv-devops-sa@us-gcp-ame-adv-56cad-prd-1.iam.gserviceaccount.com
 gke:
   cluster: projects/us-gcp-ame-adv-56cad-prd-1/locations/us-east4/clusters/test-prod
