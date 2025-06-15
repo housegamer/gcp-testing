@@ -45,7 +45,7 @@ steps:
   - -c
   - |
     gcloud deploy apply --file=deploy/pipeline.yaml --region=$LOCATION && \
-    gcloud deploy apply --file=deploy/prod.yaml --region=$LOCATION
+    gcloud deploy apply --file=deploy/prod.yaml --region=$LOCATION --project=$PROJECT_ID
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: 'Target Pipeline'
