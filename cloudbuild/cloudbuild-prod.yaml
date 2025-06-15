@@ -64,7 +64,7 @@ steps:
   - -c
   - -xe
   - |
-    gcloud container clusters get-credentials test-cluster-1 --zone us-east4 --dns-endpoint
+    gcloud container clusters get-credentials test-prod --zone us-east4 --dns-endpoint
 
     kubectl apply -f ./kubernetes/backend.yaml --force
     kubectl apply -f ./kubernetes/frontend.yaml --force
