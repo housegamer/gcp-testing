@@ -1,6 +1,11 @@
 #1
 FROM node:20.11-alpine3.19
 
+RUN groupadd --gid 1000 dia-backend && \
+    useradd --uid 1000 --gid 1000 -m dia-backend
+
+USER dia-backend
+
 #2
 RUN mkdir -p /backend
 WORKDIR /backend

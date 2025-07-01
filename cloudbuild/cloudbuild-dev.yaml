@@ -11,77 +11,77 @@ steps:
     cp /workspace/.env /workspace/backend
   secretEnv: ['TEST_CI']
 
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   entrypoint: 'bash'
-#   id: 'Create Backend .Env File'
-#   args:
-#   - -xe
-#   - -c
-#   - |
-#     gcloud secrets versions access latest --secret='test-ci' --format='get(payload.data)' | base64 -d > .env
-#     cat .env
-#     cp /workspace/.env /workspace/backend
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  id: 'Create Backend .Env File'
+  args:
+  - -xe
+  - -c
+  - |
+    gcloud secrets versions access latest --secret='test-ci' --format='get(payload.data)' | base64 -d > .env
+    cat .env
+    cp /workspace/.env /workspace/backend
 
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   entrypoint: 'bash'
-#   id: 'Create Frontend .Env File'
-#   args:
-#   - -xe
-#   - -c
-#   - |
-#     gcloud secrets versions access latest --secret='user-data' --format='get(payload.data)' | base64 -d > .env
-#     cat .env
-#     cp /workspace/.env /workspace/frontend
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  id: 'Create Frontend .Env File'
+  args:
+  - -xe
+  - -c
+  - |
+    gcloud secrets versions access latest --secret='user-data' --format='get(payload.data)' | base64 -d > .env
+    cat .env
+    cp /workspace/.env /workspace/frontend
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND', './backend']
-#   id: 'Build backend'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND', './backend']
+  id: 'Build backend'
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND']
-#   id: 'Push backend'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND']
+  id: 'Push backend'
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND', './frontend']
-#   id: 'Build Frontend'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND', './frontend']
+  id: 'Build Frontend'
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND']
-#   id: 'Push Frontend'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND']
+  id: 'Push Frontend'
 
-# - name: 'google/cloud-sdk:latest'
-#   id: 'Delivery Pipeline'
-#   entrypoint: 'bash'
-#   args:
-#   - -xe
-#   - -c
-#   - |
-#     gcloud deploy apply --file ./deploy/pipeline-dev.yaml --region $LOCATION
-#     gcloud deploy apply --file ./deploy/dev-target.yaml --region $LOCATION
+- name: 'google/cloud-sdk:latest'
+  id: 'Delivery Pipeline'
+  entrypoint: 'bash'
+  args:
+  - -xe
+  - -c
+  - |
+    gcloud deploy apply --file ./deploy/pipeline-dev.yaml --region $LOCATION
+    gcloud deploy apply --file ./deploy/dev-target.yaml --region $LOCATION
 
-# - name: 'google/cloud-sdk:latest'
-#   id: 'Target Pipeline'
-#   # allowExitCodes: [1]
-#   entrypoint: 'bash'
-#   timeout: 10800s
-#   args: 
-#   - -c
-#   - -xe
-#   - |
-#     gcloud deploy releases create app-${_BACKEND}-release-${_SUB_TAG_BACKEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND --from-k8s-manifest=./kubernetes/backend.yaml
-#     gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/frontend.yaml
+- name: 'google/cloud-sdk:latest'
+  id: 'Target Pipeline'
+  # allowExitCodes: [1]
+  entrypoint: 'bash'
+  timeout: 10800s
+  args: 
+  - -c
+  - -xe
+  - |
+    gcloud deploy releases create app-${_BACKEND}-release-${_SUB_TAG_BACKEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND --from-k8s-manifest=./kubernetes/backend.yaml
+    gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/frontend.yaml
 
-# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-#   entrypoint: 'bash'
-#   id: 'K8 Validation'
-#   args:
-#   - -c
-#   - -xe
-#   - |
-#     gcloud container clusters get-credentials test-cluster-1 --zone us-east4 --dns-endpoint
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  id: 'K8 Validation'
+  args:
+  - -c
+  - -xe
+  - |
+    gcloud container clusters get-credentials test-cluster-1 --zone us-east4 --dns-endpoint
 
-#     kubectl apply -f ./kubernetes/backend.yaml --force
-#     kubectl apply -f ./kubernetes/frontend.yaml --force
+    kubectl apply -f ./kubernetes/backend.yaml --force
+    kubectl apply -f ./kubernetes/frontend.yaml --force
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   id: 'K8 Validation Pipeline'
@@ -103,7 +103,7 @@ steps:
 #   - '--filename=./kubernetes/frontend.yaml'
 #   - '--location=us-east4'
 #   - '--cluster=test-cluster-1'
-  # - '--force=true'
+#   - '--force=true'
 
 availableSecrets:
   secretManager:
