@@ -1,8 +1,8 @@
 #1
 FROM node:20.11-alpine3.19
 
-RUN addgroup dia-backend -g 1000 && \
-    adduser dia-backend -u 1000
+RUN addgroup dia-backend -g 1001 && \
+    adduser dia-backend -u 1001
 
 USER dia-backend
 
