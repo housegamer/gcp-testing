@@ -4,7 +4,7 @@ FROM node:20.11-alpine3.19
 RUN addgroup dia-backend -g 1001 && \
     adduser dia-backend-usr -u 1002 -D -G dia-backend
 
-USER dia-backend
+USER dia-backend-usr
 
 #2
 RUN mkdir -p /backend
