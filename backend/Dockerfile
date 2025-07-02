@@ -10,8 +10,6 @@ USER root
 RUN mkdir -p /backend
 WORKDIR /backend
 
-USER dia-backend-usr
-
 #3
 COPY ./package.json /backend
 COPY ./package-lock.json /backend
@@ -23,6 +21,8 @@ RUN npm install --silent
 
 #5
 COPY . /backend
+
+USER dia-backend-usr
 
 #6
 CMD [ "npm", "start"]
