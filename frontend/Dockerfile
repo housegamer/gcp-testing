@@ -2,7 +2,7 @@
 FROM node:20.11-alpine3.19
 
 RUN addgroup dia-frontend -g 1001 && \
-    adduser dia-frontend-usr -u 1000 -D -G dia-frontend
+    adduser dia-frontend-usr -u 1002 -D -G dia-frontend
 
 #2
 RUN mkdir -p /frontend
