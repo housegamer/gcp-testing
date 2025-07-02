@@ -1,11 +1,12 @@
 #1
 FROM node:20.11-alpine3.19
 
+RUN addgroup dia-frontend -g 1001 && \
+    adduser dia-frontend-usr -u 1000 -D -G dia-frontend
+
 #2
 RUN mkdir -p /frontend
 WORKDIR /frontend
-
-# SHELL ["/bin/bash", "-c", "pwd"]
 
 #3
 COPY ./package.json /frontend
@@ -18,6 +19,8 @@ RUN npm install --silent
 
 #5
 COPY . /frontend
+
+USER dia-frontend-usr
 
 #6
 CMD [ "npm", "start"]
