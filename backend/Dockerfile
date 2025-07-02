@@ -4,13 +4,13 @@ FROM node:20.11-alpine3.19
 RUN addgroup dia-backend -g 1001 && \
     adduser dia-backend-usr -u 1002 -D -G dia-backend
 
-USER dia-backend-usr
+USER root
 
 #2
 RUN mkdir -p /backend
 WORKDIR /backend
 
-# SHELL ["/bin/bash", "-c", "pwd"]
+USER dia-backend-usr
 
 #3
 COPY ./package.json /backend
