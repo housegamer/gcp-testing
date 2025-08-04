@@ -111,6 +111,7 @@ availableSecrets:
     env: 'TEST_CI'
 
 options:
+  machineType: 'E2_HIGHCPU_8'
   logging: CLOUD_LOGGING_ONLY
   substitution_option: 'ALLOW_LOOSE'
 
