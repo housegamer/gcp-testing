@@ -72,7 +72,8 @@ steps:
     gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/templates/frontend.yaml
 
 # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-- name: 'google/cloud-sdk:latest'
+# - name: 'google/cloud-sdk:latest'
+- name: 'gcr.io/cloud-builders/helm'
   entrypoint: 'bash'
   id: 'K8 Validation'
   args:
