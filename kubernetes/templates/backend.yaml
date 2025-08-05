@@ -4,18 +4,18 @@ metadata:
   annotations:
     target: apis
   labels:
-    app: backend
-  name: backend-api
+    app: {{ .Values.labels.Appbackend }}
+  name: {{ .Values.labels.Appbackend }}-api
 spec:
-  replicas: 1
-  selector:
+  replicas: {{ .Values.replicaCount }}
     matchLabels:
-      app: backend
+  selector:
+      app: {{ .Values.labels.Appbackend }}
   strategy: {}
   template:
     metadata:
       labels:
-        app: backend
+        app: {{ .Values.labels.Appbackend }}
     spec:
       containers:
       - name: ubuntu-backend

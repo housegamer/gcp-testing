@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    target: apis
+  labels:
+    app: {{ .Values.labels.Appfrontend }}
+    io.kompose.service: {{ .Values.labels.Redisselector }}
+  name: {{ .Values.labels.Appfrontend }}-api
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.labels.Appfrontend }}
+      io.kompose.service: {{ .Values.labels.Redisselector }}
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.labels.Appfrontend }}
+        io.kompose.service: {{ .Values.labels.Redisselector }}
+    spec:
+      containers:
+      - name: ubuntu-frontend
+        image: ubuntu-frontend
+

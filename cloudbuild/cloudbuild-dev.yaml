@@ -68,8 +68,8 @@ steps:
   - -c
   - -xe
   - |
-    gcloud deploy releases create app-${_BACKEND}-release-${_SUB_TAG_BACKEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND --from-k8s-manifest=./kubernetes/backend.yaml
-    gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/frontend.yaml
+    gcloud deploy releases create app-${_BACKEND}-release-${_SUB_TAG_BACKEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_BACKEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_BACKEND:v${SHORT_SHA}.$_TAG_BACKEND --from-k8s-manifest=./kubernetes/templates/backend.yaml
+    gcloud deploy releases create app-${_FRONTEND}-release-${_SUB_TAG_FRONTEND}-${SHORT_SHA} --delivery-pipeline test-cd-pipeline --region $LOCATION --images=$_FRONTEND=$LOCATION-docker.pkg.dev/$PROJECT_ID/$_ARTIFACT_REPO/$_FRONTEND:v${SHORT_SHA}.$_TAG_FRONTEND --from-k8s-manifest=./kubernetes/templates/frontend.yaml
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
@@ -80,8 +80,11 @@ steps:
   - |
     gcloud container clusters get-credentials test-cluster-1 --zone us-east4 --dns-endpoint
 
-    kubectl apply -f ./kubernetes/backend.yaml --force
-    kubectl apply -f ./kubernetes/frontend.yaml --force
+    helm install backend ../kubernetes/ -f ../kubernetes/values.yaml -f ../kubernetes/templates/backend.yaml
+    helm install frontend ../kubernetes/ -f ../kubernetes/values.yaml -f ../kubernetes/templates/frontend.yaml
+
+    # kubectl apply -f ./kubernetes/backend.yaml --force
+    # kubectl apply -f ./kubernetes/frontend.yaml --force
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   id: 'K8 Validation Pipeline'
