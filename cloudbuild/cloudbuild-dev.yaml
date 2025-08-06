@@ -85,8 +85,8 @@ steps:
     # helm install backend ../kubernetes/ -f ../kubernetes/values.yaml -f ../kubernetes/templates/backend.yaml
     # helm install frontend ../kubernetes/ -f ../kubernetes/values.yaml -f ../kubernetes/templates/frontend.yaml
 
-    kubectl apply -f ./kubernetes/backend.yaml --force
-    kubectl apply -f ./kubernetes/frontend.yaml --force
+    kubectl apply -f ./kubernetes/templates/backend.yaml --force
+    kubectl apply -f ./kubernetes/templates/frontend.yaml --force
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   id: 'K8 Validation Pipeline'
