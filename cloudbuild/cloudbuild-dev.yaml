@@ -80,8 +80,8 @@ steps:
   - |
     gcloud container clusters get-credentials test-cluster-1 --zone us-east4 --dns-endpoint
 
-    kubectl apply -f ./kubernetes/templates/backend.yaml --force
-    kubectl apply -f ./kubernetes/templates/frontend.yaml --force
+    kubectl apply -f ./kubernetes/backend.yaml --force
+    kubectl apply -f ./kubernetes/frontend.yaml --force
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   id: 'K8 Validation Pipeline'
@@ -111,7 +111,7 @@ availableSecrets:
     env: 'TEST_CI'
 
 options:
-  machineType: 'E2_HIGHCPU_8'
+  # machineType: 'E2_HIGHCPU_8'
   logging: CLOUD_LOGGING_ONLY
   substitution_option: 'ALLOW_LOOSE'
 
