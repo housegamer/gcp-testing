@@ -1,8 +1,16 @@
-labels:
-  Appfrontend: frontend
-  Appbackend: backend
-  Redisselector: redis
-replicaCount: 1
+nameLabels:
+  appFrontend: frontend
+namespace: default
+defaultProtocolPorts:
+  # protocol: ["TCP"]
+  port: 8443
+  targetPort: 3000
+  appProtocol: HTTPS
+clusterType:
+  defaultType: ClusterIP
+ipFamilyPolicy:
+  defaultPolicy: SingleStack
+
 
 
 

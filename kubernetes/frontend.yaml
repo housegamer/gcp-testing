@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    target: apis
+  labels:
+    app: frontend
+    io.kompose.service: redis
+  name: frontend-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      io.kompose.service: redis
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend
+        io.kompose.service: redis
+    spec:
+      containers:
+      - name: ubuntu-frontend
+        image: ubuntu-frontend

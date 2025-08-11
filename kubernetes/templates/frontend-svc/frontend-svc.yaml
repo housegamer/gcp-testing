@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ .Values.nameLabels.appFrontend }}
+  name: {{ .Values.nameLabels.appFrontend }}
+  namespace: {{ .Values.namespace }}
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: {{ .Values.ipFamilyPolicy.defaultPolicy }}
+  # {{-  range $key, $val := .Values.defaultProtocolPorts }}
+  ports:
+  # {{ $key }}: {{ $val }}
+  - port: 8443
+    protocol: TCP
+    targetPort: 3000
+    appProtocol: HTTPS
+  # {{- end }}
+  selector:
+    app: {{ .Values.nameLabels.appFrontend }}
+  sessionAffinity: None
+  type: {{ .Values.clusterType.defaultType }}
